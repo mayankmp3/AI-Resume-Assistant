@@ -179,7 +179,40 @@ Instructions:
 
             try:
 
-                cover_letter = generate_response(prompt)
+                if cover_letter.startswith("Error"):
+
+                    st.warning("⚠️ Gemini is temporarily unavailable.")
+                    st.info("Showing Demo Cover Letter for presentation.")
+
+                    cover_letter = f"""
+                # Cover Letter
+
+                **{full_name}**  
+                {email}  
+                {phone}
+
+                Dear Hiring Manager,
+
+                I am writing to express my interest in the {job_role} position at {company}.
+
+                I have knowledge of {skills} and I am interested in applying these skills in a professional environment. My experience includes {experience if experience else "academic learning and project work"}.
+
+                I am interested in this opportunity because it will allow me to contribute my knowledge, improve my practical skills, and learn from experienced professionals.
+
+                {additional}
+
+                Thank you for considering my application. I look forward to the opportunity to discuss my application further.
+
+                Sincerely,  
+                {full_name}
+                """
+
+                    st.warning("DEMO OUTPUT — This is a sample cover letter, not AI-generated.")
+
+                st.success("Cover Letter Generated Successfully!")
+                st.divider()
+                st.subheader("📄 Cover Letter Preview")
+                st.markdown(cover_letter)
 
                 st.success("✅ Cover Letter Generated Successfully!")
 

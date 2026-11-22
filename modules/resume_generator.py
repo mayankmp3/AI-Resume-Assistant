@@ -222,8 +222,51 @@ Generate the complete resume.
             resume = generate_response(prompt)
 
         if resume.startswith("Error"):
-            st.error(resume)
-            return
+
+            st.warning("⚠️ Gemini is temporarily unavailable.")
+            st.info("Showing Demo Resume so you can demonstrate the application.")
+
+            resume = f"""
+        # {full_name}
+
+        Email: {email}
+        Phone: {phone}
+
+        LinkedIn: {linkedin}
+        GitHub: {github}
+        Portfolio: {portfolio}
+
+        ## Professional Summary
+
+        Motivated candidate seeking opportunities as a {target_job}.
+        Interested in applying skills and learning through professional experience.
+
+        ## Education
+
+        **{degree}**
+        {college}
+
+        Graduation Year: {graduation_year}
+        CGPA: {cgpa}
+
+        ## Skills
+
+        {skills}
+
+        ## Experience
+
+        {experience if experience else "No experience provided."}
+
+        ## Projects
+
+        {projects if projects else "No projects provided."}
+
+        ## Certifications
+
+        {certifications if certifications else "No certifications provided."}
+        """
+
+            st.warning("DEMO OUTPUT — This is a sample resume, not AI-generated.")
 
         st.success("✅ Resume Generated Successfully!")
 
